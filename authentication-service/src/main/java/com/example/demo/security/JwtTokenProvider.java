@@ -26,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
-
     private Key key;
     private final ObjectMapper parser = new ObjectMapper();
 
@@ -60,7 +59,7 @@ public class JwtTokenProvider {
        Date current = new Date();
        Date validity = new Date(current.getTime() + expireTime);
        return Jwts.builder()
-       .setSubject("QUANG")
+       .setSubject("QUANBEDE")
        .claim(JWT_ROLE_KEY, "ROLE_USER")
        .claim(JWT_ACTIVE_KEY, true)
        .claim(JWT_AUTHORITY_KEY, Arrays.asList("ROLE_USER"))
@@ -74,7 +73,7 @@ public class JwtTokenProvider {
         Date current = new Date();
         Date validity = new Date(current.getTime() + expireTime);
         return Jwts.builder()
-        .setSubject("QUANG")
+        .setSubject("QUANBEDE")
         .claim(JWT_ROLE_KEY, "ROLE_ADMIN")
         .claim(JWT_ACTIVE_KEY, true)
         .claim(JWT_AUTHORITY_KEY, Arrays.asList("logManagement", "reviewApplicant"))
@@ -88,7 +87,7 @@ public class JwtTokenProvider {
         Date current = new Date();
         Date validity = new Date(current.getTime() + expireTime);
         return Jwts.builder()
-        .setSubject("QUANG")
+        .setSubject("QUANBEDE")
         .claim(JWT_ROLE_KEY, "ROLE_STAFF")
         .claim(JWT_ACTIVE_KEY, true)
         .claim(JWT_AUTHORITY_KEY, Arrays.asList("reviewApplicant"))

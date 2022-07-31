@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.AuthService;
 import com.example.demo.service.dto.request.LoginRequestDTO;
+import com.example.demo.service.dto.request.RegisterRequestDTO;
 import com.example.demo.service.dto.response.LoginResponseDTO;
+import com.example.demo.service.dto.response.ReviewerResponseDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +30,11 @@ public class AuthenticationController {
 		return ResponseEntity.ok(authService.login(loginRequestDTO, "USER"));
 	}
 	
+	@PostMapping("/register")
+	public ResponseEntity<ReviewerResponseDTO> register(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
+		return ResponseEntity.ok(authService.register(registerRequestDTO));
+	}
+	
 	@PostMapping("/staff/login")
 	public ResponseEntity<LoginResponseDTO> loginStaff(@Valid @RequestBody LoginRequestDTO loginRequestDTO) {
 		return ResponseEntity.ok(authService.login(loginRequestDTO, "STAFF"));
@@ -39,8 +46,7 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/logout")
-	public ResponseEntity<?> logout(@RequestHeader HttpHeaders headers) {
-		String token = headers.getFirst(HttpHeaders.AUTHORIZATION);
-		return ResponseEntity.ok(authService.logout(token.split(" ")[1]));
+	public ResponseEntity<?> logout() {
+		return ResponseEntity.ok(authService.logout(""));
 	}
 }
